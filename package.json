@@ -1,0 +1,17 @@
+{
+  "name": "build",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compass": "~1.1",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^0.12.1",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-trimtrailingspaces": "~0.4.0",
+    "grunt-replace": "~1.0.1"
+  }
+}
