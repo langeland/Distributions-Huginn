@@ -1,0 +1,42 @@
+Langeland\Huginn\Service\JiraService:
+  properties:
+    apiCache:
+      object:
+        factoryObjectName: Neos\Flow\Cache\CacheManager
+        factoryMethodName: getCache
+        arguments:
+          1:
+            value: Langeland_Huginn_ApiCache
+
+Langeland\Huginn\Service\GitService:
+  properties:
+    apiCache:
+      object:
+        factoryObjectName: Neos\Flow\Cache\CacheManager
+        factoryMethodName: getCache
+        arguments:
+          1:
+            value: Langeland_Huginn_ApiCache
+
+chobie\Jira\Api\Authentication\Basic:
+  arguments:
+    1:
+      setting: 'Langeland.Huginn.Jira.Api.Authentication.user'
+    2:
+      setting: 'Langeland.Huginn.Jira.Api.Authentication.password'
+
+
+chobie\Jira\Api:
+  arguments:
+    1:
+      setting: 'Langeland.Huginn.Jira.Api.endpoint'
+    2:
+      object:
+        name: 'chobie\Jira\Api\Authentication\Basic'
+        arguments:
+          1:
+            setting: 'Langeland.Huginn.Jira.Api.Authentication.user'
+          2:
+            setting: 'Langeland.Huginn.Jira.Api.Authentication.password'
+
+

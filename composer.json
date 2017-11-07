@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "neos/flow": "^4.2",
+        "neos/flow": "~4.2.0",
         "langeland/liquid": "dev-master",
         "chobie/jira-api-restclient": "^2.0@dev",
         "php-http/guzzle6-adapter": "^1.1",
@@ -32,8 +32,7 @@
         "carlosio/geckoboard": "^1.0"
     },
     "require-dev": {
-        "neos/kickstarter": "^4.2",
-        "typo3/surf": "^2.0"
+        "neos/kickstarter": "~4.2.0"
     },
     "replace": {
         "typo3/flow-base-distribution": "self.version"

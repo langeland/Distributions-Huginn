@@ -1,0 +1,47 @@
+Langeland:
+  Huginn:
+    Teams:
+      - name: 'Team WebApi'
+        Jira:
+          board: 113
+          sprintMatch: '/^(Web-|)API Sprint [\w (+)]*/'
+        GitHub:
+          tags:
+            - 'team-web-api'
+          teams:
+            - 'team-web-api'
+
+      - name: 'Team Display'
+        Jira:
+          board: 113
+          sprintMatch: '/^Display Sprint [\w (+)]*/'
+        GitHub:
+          tags:
+            - 'team-display'
+          teams:
+            - 'team-display'
+
+      - name: 'Drupal Core'
+        Jira:
+          board: 67
+          sprintMatch: '/^PF - Sprint [\w (+)]*/'
+        GitHub:
+          tags:
+            - 'team-core'
+          teams:
+            - 'team-core'
+
+    Jira:
+      Api:
+        endpoint: 'https://jiradrdk.atlassian.net'
+        Authentication:
+          user: ''
+          password: ''
+
+    GitHub:
+      Api:
+        endpoint: 'https://jiradrdk.atlassian.net'
+        Authentication:
+          authToken: ''
+
+
