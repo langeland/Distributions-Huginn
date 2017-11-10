@@ -182,7 +182,6 @@ class StatsCommandController extends CommandController
                 $stateCount[$issue->getStatus()['statusCategory']['name']][] = $issue->getKey();
             }
 
-            $this->outputLine('Board overview' . PHP_EOL);
             $rows = array();
 
             foreach ($stateCount as $item) {

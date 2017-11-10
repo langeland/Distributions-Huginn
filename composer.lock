@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "855dda84104ee3055cccb386621fb6e0",
+    "content-hash": "38d553ee5454715b7cf0826a15b9b40b",
     "packages": [
         {
             "name": "carlosio/geckoboard",
@@ -101,7 +101,7 @@
                 "jira",
                 "rest"
             ],
-            "time": "2017-09-13 07:52:25"
+            "time": "2017-09-13T07:52:25+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -829,6 +829,46 @@
             "time": "2017-10-23T18:21:04+00:00"
         },
         {
+            "name": "expandonline/klipfolio-api-php",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ExpandOnline/klipfolio-api-php.git",
+                "reference": "d8c030832a1a03666faeb4e849297720f390dbce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ExpandOnline/klipfolio-api-php/zipball/d8c030832a1a03666faeb4e849297720f390dbce",
+                "reference": "d8c030832a1a03666faeb4e849297720f390dbce",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "2.4.2",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ExpandOnline\\KlipfolioApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Vaassens",
+                    "email": "pvaassens@expandonline.nl"
+                }
+            ],
+            "description": "Integrate Klipfolio with your PHP project with this easy library!",
+            "time": "2016-04-01T10:09:47+00:00"
+        },
+        {
             "name": "guzzle/guzzle",
             "version": "v3.9.3",
             "source": {
@@ -1280,12 +1320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/langeland/Langeland.Liquid.git",
-                "reference": "d7e7a03feca208eb0c99ce9105b67f2381769074"
+                "reference": "25ca872acf9df76f748f014341beef221eff2e44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/langeland/Langeland.Liquid/zipball/d7e7a03feca208eb0c99ce9105b67f2381769074",
-                "reference": "d7e7a03feca208eb0c99ce9105b67f2381769074",
+                "url": "https://api.github.com/repos/langeland/Langeland.Liquid/zipball/25ca872acf9df76f748f014341beef221eff2e44",
+                "reference": "25ca872acf9df76f748f014341beef221eff2e44",
                 "shasum": ""
             },
             "require": {
@@ -1302,11 +1342,11 @@
                 "source": "https://github.com/langeland/Langeland.Liquid/tree/master",
                 "issues": "https://github.com/langeland/Langeland.Liquid/issues"
             },
-            "time": "2016-05-12 06:39:39"
+            "time": "2017-11-10T14:47:49+00:00"
         },
         {
             "name": "neos/cache",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/cache.git",
@@ -1387,16 +1427,16 @@
         },
         {
             "name": "neos/eel",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/eel.git",
-                "reference": "283c8312ee90d2cc4b00617d2aef53505f7dd47e"
+                "reference": "18b9018ef5f437ff19c54055384d46a611b441d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neos/eel/zipball/283c8312ee90d2cc4b00617d2aef53505f7dd47e",
-                "reference": "283c8312ee90d2cc4b00617d2aef53505f7dd47e",
+                "url": "https://api.github.com/repos/neos/eel/zipball/18b9018ef5f437ff19c54055384d46a611b441d1",
+                "reference": "18b9018ef5f437ff19c54055384d46a611b441d1",
                 "shasum": ""
             },
             "require": {
@@ -1424,11 +1464,11 @@
                 "MIT"
             ],
             "description": "The Embedded Expression Language (Eel) is a building block for creating Domain Specific Languages",
-            "time": "2017-10-18T14:50:12+00:00"
+            "time": "2017-10-19T16:05:23+00:00"
         },
         {
             "name": "neos/error-messages",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/error-messages.git",
@@ -1462,16 +1502,16 @@
         },
         {
             "name": "neos/flow",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/flow.git",
-                "reference": "771cf079d0aa1298d3b7cb47f9ba14d7bfbeef47"
+                "reference": "c94c92f0f008a5816be71501a1fdf22339b4eb26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neos/flow/zipball/771cf079d0aa1298d3b7cb47f9ba14d7bfbeef47",
-                "reference": "771cf079d0aa1298d3b7cb47f9ba14d7bfbeef47",
+                "url": "https://api.github.com/repos/neos/flow/zipball/c94c92f0f008a5816be71501a1fdf22339b4eb26",
+                "reference": "c94c92f0f008a5816be71501a1fdf22339b4eb26",
                 "shasum": ""
             },
             "require": {
@@ -1534,11 +1574,11 @@
             ],
             "description": "Flow Application Framework",
             "homepage": "http://flow.neos.io",
-            "time": "2017-10-18T15:40:16+00:00"
+            "time": "2017-11-10T13:06:37+00:00"
         },
         {
             "name": "neos/fluid-adaptor",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/fluidadaptor.git",
@@ -1572,7 +1612,7 @@
         },
         {
             "name": "neos/utility-arrays",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-arrays.git",
@@ -1613,7 +1653,7 @@
         },
         {
             "name": "neos/utility-files",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-files.git",
@@ -1654,7 +1694,7 @@
         },
         {
             "name": "neos/utility-lock",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-lock.git",
@@ -1691,7 +1731,7 @@
         },
         {
             "name": "neos/utility-mediatypes",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-mediatypes.git",
@@ -1732,7 +1772,7 @@
         },
         {
             "name": "neos/utility-objecthandling",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-objecthandling.git",
@@ -1773,7 +1813,7 @@
         },
         {
             "name": "neos/utility-opcodecache",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-opcodecache.git",
@@ -1809,7 +1849,7 @@
         },
         {
             "name": "neos/utility-pdo",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-pdo.git",
@@ -1845,7 +1885,7 @@
         },
         {
             "name": "neos/utility-schema",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-schema.git",
@@ -1886,7 +1926,7 @@
         },
         {
             "name": "neos/utility-unicode",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/utility-unicode.git",
@@ -3637,7 +3677,7 @@
     "packages-dev": [
         {
             "name": "neos/kickstarter",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/kickstart.git",

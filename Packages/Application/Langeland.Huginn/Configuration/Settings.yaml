@@ -3,7 +3,7 @@ Langeland:
     Teams:
       - name: 'Team WebApi'
         Jira:
-          board: 113
+          board: 109
           sprintMatch: '/^(Web-|)API Sprint [\w (+)]*/'
         GitHub:
           tags:
@@ -13,7 +13,7 @@ Langeland:
 
       - name: 'Team Display'
         Jira:
-          board: 113
+          board: 57
           sprintMatch: '/^Display Sprint [\w (+)]*/'
         GitHub:
           tags:
