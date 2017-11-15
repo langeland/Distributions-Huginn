@@ -1,0 +1,12 @@
+##
+# Huginn subroutes
+#
+
+-
+  name: 'Huginn'
+  uriPattern: '<HuginnSubroutes>'
+  defaults:
+    '@format': 'html'
+  subRoutes:
+    'HuginnSubroutes':
+      package: 'Langeland.Huginn'

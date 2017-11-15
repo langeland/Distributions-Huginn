@@ -1,0 +1,7 @@
+-
+  name: 'Event callbacks'
+  uriPattern: 'eventlistener/{@action}'
+  defaults:
+    '@package':    'Langeland.Huginn'
+    '@controller': 'EventListener'
+    '@format':     'json'
