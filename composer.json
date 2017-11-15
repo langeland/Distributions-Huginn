@@ -23,7 +23,6 @@
     ],
     "require": {
         "neos/flow": "~4.2.0",
-        "langeland/liquid": "dev-master",
         "chobie/jira-api-restclient": "^2.0@dev",
         "php-http/guzzle6-adapter": "^1.1",
         "knplabs/github-api": "^2.5",

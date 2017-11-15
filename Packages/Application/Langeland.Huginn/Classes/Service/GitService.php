@@ -3,6 +3,7 @@
 namespace Langeland\Huginn\Service;
 
 
+use Github\HttpClient\Message\ResponseMediator;
 use Neos\Cache\Frontend\VariableFrontend;
 use Neos\Flow\Annotations as Flow;
 
@@ -72,7 +73,8 @@ class GitService
         return $repositories;
     }
 
-    public function getReposByTeams(array $teamSlugs) {
+    public function getReposByTeams(array $teamSlugs)
+    {
         $repositories = array();
         foreach ($teamSlugs as $teamSlug) {
             $repositories = array_merge($repositories, $this->getReposByTeam($teamSlug));
@@ -139,11 +141,11 @@ class GitService
             $pullRequests = $this->apiCache->get($callIdentifier);
         }
 
-
         return $pullRequests;
     }
 
-    public function getPullsByTeams(array $teamSlugs) {
+    public function getPullsByTeams(array $teamSlugs)
+    {
         $pullRequests = array();
         foreach ($teamSlugs as $teamSlug) {
             $pullRequests = array_merge($pullRequests, $this->getPullsByTeam($teamSlug));
@@ -167,15 +169,22 @@ class GitService
 
         \Neos\Flow\var_dump(count($commits), 'all commits');
 
-        $commits = array_filter($commits, function($commit) use ($memberLonins){
-            return (array_key_exists($commit['author']['login'], $memberLonins) );
+        $commits = array_filter($commits, function ($commit) use ($memberLonins) {
+            return (array_key_exists($commit['author']['login'], $memberLonins));
         });
 
         \Neos\Flow\var_dump(count($commits), 'filters commits');
 
 
-
         return $commits;
+    }
+
+
+    public function getByPath($path)
+    {
+        $response = $this->github->getHttpClient()->get($path);
+        $content = ResponseMediator::getContent($response);
+        return $content;
     }
 
 }
