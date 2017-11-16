@@ -32,8 +32,6 @@ class EventListenerController extends ActionController
         $delivery = $this->request->getHttpRequest()->getHeader('X-Github-Delivery');
         $payload = $this->request->getArguments();
 
-        $this->request->getHttpRequest()->getContent()
-
 //        \Neos\Flow\var_dump($event, 'X-Github-Event');
 //        \Neos\Flow\var_dump($delivery, 'X-Github-Delivery');
 //        \Neos\Flow\var_dump($payload, 'Payload');

@@ -22,6 +22,7 @@
         }
     ],
     "require": {
+        "php": ">=7.1",
         "neos/flow": "~4.2.0",
         "chobie/jira-api-restclient": "^2.0@dev",
         "php-http/guzzle6-adapter": "^1.1",
@@ -44,6 +45,9 @@
         "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-install-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
-        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "compile": [
+            "php flow doctrine:migrate"
+        ]
     }
 }

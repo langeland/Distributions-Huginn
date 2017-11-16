@@ -1,0 +1,35 @@
+{
+  "name": "Huginn",
+  "description": "In Norse mythology, Huginn and Muninn are a pair of ravens that fly all over the world, Midgard, and bring information to the god Odin.",
+  "keywords": [
+    "Flow Framework"
+  ],
+  "scripts": {},
+  "env": {
+    "FLOW_CONTEXT": {
+      "description": "The Flow Application Context.",
+      "value": "Development/Heroku"
+    },
+    "HUGINN_JIRA_USER": {
+      "description": "User for Jira access.",
+      "value": "user@dr.dk"
+    },
+    "HUGINN_JIRA_PASSWORD": {
+      "description": "Password for Jira access.",
+      "value": "secretPassword"
+    },
+    "HUGINN_GITHUB_TOKEN": {
+      "description": "GitHub access token.",
+      "value": "secretAccessToken"
+    }
+  },
+  "formation": {},
+  "addons": [
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ]
+}
