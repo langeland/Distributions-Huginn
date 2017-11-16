@@ -2,16 +2,12 @@ Neos:
   Flow:
     persistence:
       backendOptions:
-        host: 'mysql'
-        dbname: 'application'       # adjust to your database name
-        user: 'application'             # adjust to your database user
-        password: 'noitacilppa'         # adjust to your database password
         driver: 'pdo_mysql'
-
-       # if you want to log executed SQL queries, enable the next 2 lines
-#      doctrine:
-#        sqlLogger: 'TYPO3\Flow\Persistence\Doctrine\Logging\SqlLogger'
-
+        dbname: %ENV_DB_NAME%
+        user: %ENV_DB_USER%
+        password: %ENV_DB_PASSWORD%
+        host: %ENV_DB_HOST%
+        port: %ENV_DB_PORT%
 
 Langeland:
   Huginn:
@@ -25,5 +21,3 @@ Langeland:
       Api:
         Authentication:
           authToken: %env:HUGINN_GITHUB_TOKEN%
-
-

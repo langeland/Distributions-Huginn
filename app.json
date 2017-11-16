@@ -25,7 +25,8 @@
   },
   "formation": {},
   "addons": [
-    "papertrail"
+    "papertrail",
+    "jawsdb-maria"
   ],
   "buildpacks": [
     {
