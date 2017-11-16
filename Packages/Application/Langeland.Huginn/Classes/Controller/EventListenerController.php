@@ -32,6 +32,8 @@ class EventListenerController extends ActionController
         $delivery = $this->request->getHttpRequest()->getHeader('X-Github-Delivery');
         $payload = $this->request->getArguments();
 
+        $this->request->getHttpRequest()->getContent()
+
 //        \Neos\Flow\var_dump($event, 'X-Github-Event');
 //        \Neos\Flow\var_dump($delivery, 'X-Github-Delivery');
 //        \Neos\Flow\var_dump($payload, 'Payload');
@@ -53,11 +55,9 @@ class EventListenerController extends ActionController
             ->setHeader('Request-Id', $gitHubEvent->getIdentifier())
             ->setHeader('Strict-Transport-Security', 'max-age=31536000')
             ->setHeader('Vary', 'Accept-Encoding')
-            ->setHeader('X-Content-Type-Options', 'nosniff')
-        ;
+            ->setHeader('X-Content-Type-Options', 'nosniff');
 
         return '';
-
     }
 
 }
