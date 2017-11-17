@@ -5,3 +5,12 @@
     '@package':    'Langeland.Huginn'
     '@controller': 'EventListener'
     '@format':     'json'
+
+
+-
+  name: 'Klipfolio endpoints'
+  uriPattern: 'klipfolio/{@action}'
+  defaults:
+    '@package':    'Langeland.Huginn'
+    '@controller': 'klipfolio'
+    '@format':     'json'
