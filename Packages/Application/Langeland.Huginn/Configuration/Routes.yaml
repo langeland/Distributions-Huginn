@@ -12,5 +12,5 @@
   uriPattern: 'klipfolio/{@action}'
   defaults:
     '@package':    'Langeland.Huginn'
-    '@controller': 'klipfolio'
+    '@controller': 'Klipfolio'
     '@format':     'json'
