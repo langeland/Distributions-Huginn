@@ -22,7 +22,7 @@ use Neos\Flow\Mvc\Controller\ActionController;
  *
  * @package Langeland\Huginn\Controller
  */
-class KlipfolioController extends ActionController
+class GeckoboardController extends ActionController
 {
 
     /**
@@ -83,9 +83,19 @@ class KlipfolioController extends ActionController
     public function sprintInfoAction(string $teamSlug)
     {
         $team = $this->teamsConfiguration[0];
-
         $activeSprint = $this->jiraService->getActiveSprint($team['Jira']['board'], $team['Jira']['sprintMatch']);
-        $this->view->assign('value', $activeSprint);
+        $sprintInfo = [
+            'item' => [
+                [
+                    'text' => sprintf(
+                        ' %s (ID:%s)',
+                        $activeSprint['name'], $activeSprint['id']),
+                    'type' => 0
+                ]
+            ]
+        ];
+
+        $this->view->assign('value', $sprintInfo);
     }
 
     /**
@@ -94,6 +104,9 @@ class KlipfolioController extends ActionController
     public function boardOverviewAction(string $teamSlug)
     {
 
+
+
+
         $team = $this->teamsConfiguration[0];
 
         $boardConfiguration = $this->jiraService->getBoardConfiguration($team['Jira']['board']);
@@ -101,7 +114,7 @@ class KlipfolioController extends ActionController
 
         $columns = [];
         foreach ($boardConfiguration['columnConfig']['columns'] as $column) {
-            $columns[str_replace(' ', '', $column['name'])] = [];
+            $columns[$column['name']] = [];
         }
 
         $issues = $this->jiraService->getIssuesForSprint($activeSprint['id']);

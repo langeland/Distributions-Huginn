@@ -7,6 +7,7 @@ namespace Langeland\Huginn\Command;
  */
 
 use ExpandOnline\KlipfolioApi\Client;
+use ExpandOnline\KlipfolioApi\Connector\User\UserConnector;
 use ExpandOnline\KlipfolioApi\Klipfolio;
 use Langeland\Huginn\Service\GitService;
 use Langeland\Huginn\Service\JiraService;
@@ -52,6 +53,10 @@ class KlipfolioCommandController extends CommandController
         $client = new Client('https://app.klipfolio.com/api', '775f9849e79497572657f4ef976149fa413a42e3', new \Http\Adapter\Guzzle6\Client());
         $klipfolio = new Klipfolio($client);
 
+        $user = $klipfolio->get((new UserConnector())->setId('123abc'));
+
+        echo $user->company;
+// Output: Expand Online
 
 
     }

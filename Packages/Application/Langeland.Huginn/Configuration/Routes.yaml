@@ -14,3 +14,13 @@
     '@package':    'Langeland.Huginn'
     '@controller': 'Klipfolio'
     '@format':     'json'
+
+-
+  name: 'Geckoboard endpoints'
+  uriPattern: 'geckoboard/{@action}'
+  defaults:
+    '@package':    'Langeland.Huginn'
+    '@controller': 'Geckoboard'
+    '@format':     'json'
+
+
