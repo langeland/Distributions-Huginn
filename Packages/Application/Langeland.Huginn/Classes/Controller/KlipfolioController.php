@@ -85,6 +85,8 @@ class KlipfolioController extends ActionController
         $team = $this->teamsConfiguration[0];
 
         $activeSprint = $this->jiraService->getActiveSprint($team['Jira']['board'], $team['Jira']['sprintMatch']);
+        $activeSprint['goal'] = nl2br($activeSprint['goal']);
+
         $this->view->assign('value', $activeSprint);
     }
 
