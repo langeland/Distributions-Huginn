@@ -1,7 +1,8 @@
 Langeland:
   Huginn:
     Teams:
-      - name: 'Team WebApi'
+      webapi:
+        name: 'Team WebApi'
         Jira:
           board: 109
           sprintMatch: '/^(Web-|)API Sprint [\w (+)]*/'
@@ -10,8 +11,8 @@ Langeland:
             - 'team-web-api'
           teams:
             - 'team-web-api'
-
-      - name: 'Team Display'
+      display:
+        name: 'Team Display'
         Jira:
           board: 57
           sprintMatch: '/^Display Sprint [\w (+)]*/'
@@ -21,7 +22,8 @@ Langeland:
           teams:
             - 'team-display'
 
-      - name: 'Drupal Core'
+      core:
+        name: 'Drupal Core'
         Jira:
           board: 67
           sprintMatch: '/^PF - Sprint [\w (+)]*/'

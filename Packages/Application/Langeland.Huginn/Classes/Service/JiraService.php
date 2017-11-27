@@ -169,12 +169,19 @@ class JiraService
                 }
                 $params['startAt'] = $params['startAt'] + $params['maxResults'];
             }
+            $keydIssues = array();
 
-            $this->apiCache->set($callIdentifier, $issues);
+            /** @var \chobie\Jira\Issue $issue */
+            foreach ($issues as $issue) {
+                $keydIssues[$issue->getKey()] = $issue;
+            }
+
+
+            $this->apiCache->set($callIdentifier, $keydIssues);
         } else {
-            $issues = $this->apiCache->get($callIdentifier);
+            $keydIssues = $this->apiCache->get($callIdentifier);
         }
 
-        return $issues;
+        return $keydIssues;
     }
 }

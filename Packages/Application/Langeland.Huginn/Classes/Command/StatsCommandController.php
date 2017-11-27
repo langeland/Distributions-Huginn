@@ -310,6 +310,8 @@ class StatsCommandController extends CommandController
     }
 
 
+
+
     protected function outputTable($rows, $headers = null, $title = null)
     {
 
