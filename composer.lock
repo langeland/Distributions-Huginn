@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbede1fd222e709779c95796ccb3f3f7",
+    "content-hash": "7f06ec363e2c8764d8824588030d7824",
     "packages": [
         {
             "name": "carlosio/geckoboard",
@@ -3693,6 +3693,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.1"
+    },
     "platform-dev": []
 }

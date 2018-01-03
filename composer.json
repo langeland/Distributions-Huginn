@@ -22,6 +22,8 @@
         }
     ],
     "require": {
+        "php": ">=7.1",
+        "ext-mbstring": "*",
         "neos/flow": "~4.2.0",
         "chobie/jira-api-restclient": "^2.0@dev",
         "php-http/guzzle6-adapter": "^1.1",

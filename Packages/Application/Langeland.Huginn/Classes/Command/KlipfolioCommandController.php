@@ -7,9 +7,11 @@ namespace Langeland\Huginn\Command;
  */
 
 use ExpandOnline\KlipfolioApi\Client;
+use ExpandOnline\KlipfolioApi\Connector\User\UserConnector;
 use ExpandOnline\KlipfolioApi\Klipfolio;
 use Langeland\Huginn\Service\GitService;
 use Langeland\Huginn\Service\JiraService;
+use Langeland\Huginn\Service\KlipfolioService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 
@@ -20,44 +22,102 @@ class KlipfolioCommandController extends CommandController
 {
 
     /**
-     * @var JiraService
+     * @var KlipfolioService
      * @Flow\Inject
      */
-    protected $jiraService;
-
-    /**
-     * @var GitService
-     * @Flow\Inject
-     */
-    protected $gitService;
-
-    /**
-     * @var array
-     * @Flow\InjectConfiguration(path="Teams")
-     */
-    protected $teamsConfiguration = [];
-
-
-
-
+    protected $klipfolioService;
 
 
     /**
-     * List all boards in Jira. This only includes boards that the user has permission to view.
-     * @param bool $create Create / Update dataset
+     *
+     *
+     * @see http://apidocs.klipfolio.com/reference
      */
-    public function testCommand()
+    public function updateAllCommand()
     {
 
-        $client = new Client('https://app.klipfolio.com/api', '775f9849e79497572657f4ef976149fa413a42e3', new \Http\Adapter\Guzzle6\Client());
-        $klipfolio = new Klipfolio($client);
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of active sprints');
+        $this->outputLine('=============================================================================');
+        $this->klipfolioService->sprintInfoUpdate();
 
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of active boards');
+        $this->outputLine('=============================================================================');
+        $this->klipfolioService->boardInfoUpdate();
 
+//        $this->outputLine('=============================================================================');
+//        $this->outputLine('====  Generating list of all active issues');
+//        $this->outputLine('=============================================================================');
+//        $this->klipfolioService->issuesUpdate();
+
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of pull requests');
+        $this->outputLine('=============================================================================');
+        $this->klipfolioService->pullRequestsUpdate();
 
     }
 
+    /**
+     *
+     *
+     * @see http://apidocs.klipfolio.com/reference
+     */
+    public function sprintInfoCommand()
+    {
 
-//184756-92443500-a524-0135-8805-22000ae1c15b
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of active sprints');
+        $this->outputLine('=============================================================================');
+
+        $this->klipfolioService->sprintInfoUpdate();
+    }
+
+    /**
+     *
+     *
+     * @see http://apidocs.klipfolio.com/reference
+     */
+    public function boardInfoCommand()
+    {
+
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of active boards');
+        $this->outputLine('=============================================================================');
+
+        $this->klipfolioService->boardInfoUpdate();
+    }
+
+    /**
+     *
+     *
+     * @see http://apidocs.klipfolio.com/reference
+     */
+    public function issuesCommand()
+    {
+
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of all active issues');
+        $this->outputLine('=============================================================================');
+
+        $this->klipfolioService->issuesUpdate();
+    }
+
+    /**
+     *
+     *
+     * @see http://apidocs.klipfolio.com/reference
+     */
+    public function pullRequestsCommand()
+    {
+
+        $this->outputLine('=============================================================================');
+        $this->outputLine('====  Generating list of pull requests');
+        $this->outputLine('=============================================================================');
+
+        $this->klipfolioService->pullRequestsUpdate();
+    }
+
 
 
 }

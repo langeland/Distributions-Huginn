@@ -133,9 +133,12 @@ class GitService
             foreach ($repositories as $repository) {
                 $repositoryPullRequests = $this->github->pullRequests()->all('drdk', $repository['name']);
                 if ($repositoryPullRequests !== array()) {
-                    $pullRequests = array_merge($pullRequests, $repositoryPullRequests);
+                    foreach ($repositoryPullRequests as $repositoryPullRequest){
+                        $pullRequests[] = $this->github->pullRequests()->show('drdk', $repository['name'], $repositoryPullRequest['number']);
+                    }
                 }
             }
+
             $this->apiCache->set($callIdentifier, $pullRequests);
         } else {
             $pullRequests = $this->apiCache->get($callIdentifier);

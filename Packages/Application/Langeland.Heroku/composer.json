@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "langeland/heroku",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Langeland\\Heroku\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Langeland.Heroku"
+        }
+    }
+}
