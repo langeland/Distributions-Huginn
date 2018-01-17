@@ -1,7 +1,4 @@
 version: '2'
-volumes:
-  ssh-agent:
-    external: true
 
 services:
   application:
@@ -14,6 +11,7 @@ services:
       - SYNC_MAX_INOTIFY_WATCHES=40000
       - SYNC_VERBOSE=1
     privileged: true
+
   mysql:
     image: mysql:5.6
     ports:
@@ -23,31 +21,42 @@ services:
       MYSQL_USER: application
       MYSQL_PASSWORD: noitacilppa
       MYSQL_DATABASE: application
+
+#  nginx:
+#    image: danmarksradio/docker-twa-php-71:develop
+#    ports:
+#      - "80:80"
+#    volumes_from:
+#      - application:rw
+#    environment:
+#      NGINX_WEBROOT: "/var/www/application/Web"
+#      NGINX_PHP_HOST_AND_PORT: php:9000
+#      NGINX_SERVERNAME: application-dev
+#    volumes:
+#        - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+
   nginx:
-    image: nginx:1.13
-    ports:
-      - "80:80"
-    volumes_from:
-      - application:rw
+    image: danmarksradio/docker-twa-nginx:develop
     environment:
-      NGINX_WEBROOT: "/var/www/application/Web"
-      NGINX_PHP_HOST_AND_PORT: php:9000
-      NGINX_SERVERNAME: application-dev
-    volumes:
-        - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-  php:
-    image: pcodk/php7
+#      NGINX_SERVERNAME: dr
+      NGINX_PATH_PREFIX: tjenester/huginn
+    ports:
+      - "8015:80"
+      - "44315:443"
     volumes_from:
       - application:rw
-    volumes:
-      - ssh-agent:/ssh-agent
+
+  php:
+    image: docker-twa-php-71
+    volumes_from:
+      - application:rw
     environment:
       XDEBUG_CONFIG: remote_host=172.17.0.1
-      PCO_ENV: dev
       FLOW_CONTEXT: Development/Docker
-      SSH_AUTH_SOCK: /ssh-agent/ssh-agent.sock
+    env_file:
+      - .env
 
-  devtools:
-    image: pcodk/devtools
-    volumes_from:
-      - application
+#  devtools:
+#    image: pcodk/devtools
+#    volumes_from:
+#      - application

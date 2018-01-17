@@ -37,6 +37,49 @@ class StatsCommandController extends CommandController
     protected $teamsConfiguration = [];
 
     /**
+     * @var array
+     * @Flow\InjectConfiguration()
+     */
+    protected $huginnConfiguration = [];
+
+    /**
+     * @var array
+     * @Flow\InjectConfiguration(package="Neos.Flow", path="persistence.backendOptions")
+     */
+    protected $systemConfiguration = [];
+
+
+    /**
+     * @var \Langeland\Huginn\Log\ApplicationLoggerInterface
+     * @Flow\Inject
+     */
+    protected $applicationLogger;
+
+    /**
+     * List all boards in Jira. This only includes boards that the user has permission to view.
+     */
+    public function logTestCommand()
+    {
+
+        $this->applicationLogger->log('TESTING');
+
+
+    }
+
+    /**
+     * List all boards in Jira. This only includes boards that the user has permission to view.
+     */
+    public function configTestCommand()
+    {
+
+        \Neos\Flow\var_dump($this->huginnConfiguration, 'huginnConfiguration');
+        \Neos\Flow\var_dump($this->systemConfiguration, 'systemConfiguration');
+
+
+
+    }
+
+    /**
      * List all boards in Jira. This only includes boards that the user has permission to view.
      */
     public function boardsCommand()
@@ -51,7 +94,6 @@ class StatsCommandController extends CommandController
         $this->outputLine('Board overview');
         $this->output->outputTable($rows, array('ID', 'Name', 'Type'));
     }
-
 
     /**
      * List all sprints from a board, for a given board Id. This only includes sprints that the user has permission to view.

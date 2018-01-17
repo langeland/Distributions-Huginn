@@ -34,6 +34,11 @@ class KlipfolioService
      */
     protected $teamsConfiguration = [];
 
+    /**
+     * @var \Langeland\Huginn\Log\ApplicationLoggerInterface
+     * @Flow\Inject
+     */
+    protected $applicationLogger;
 
     /**
      *
@@ -42,25 +47,29 @@ class KlipfolioService
      */
     public function sprintInfoUpdate()
     {
-
-//        $this->outputLine('=============================================================================');
-//        $this->outputLine('====  Generating list of active sprints');
-//        $this->outputLine('=============================================================================');
+        $this->applicationLogger->log(
+            'Generating list of active sprints'
+        );
 
         $rows = array();
         foreach ($this->teamsConfiguration as $teamSlug => $team) {
-//            $this->outputLine('===  ' . $team['name']);
             try {
                 $activeSprint = $this->jiraService->getActiveSprint($team['Jira']['board'], $team['Jira']['sprintMatch']);
                 $activeSprint['goal'] = nl2br($activeSprint['goal']);
                 $activeSprint['_teams'] = $teamSlug;
                 $rows[$teamSlug] = $activeSprint;
+                $this->applicationLogger->log(
+                    'Found active sprint for ' . $team['name'] . '. Sprint: ' . $activeSprint['name']
+                );
             } catch (\Exception $exception) {
+                $this->applicationLogger->log(
+                    'Cannot get active sprint for ' . $team['name'] . '. Message: ' . $exception->getMessage(),
+                    LOG_WARNING, ['type' => get_class($exception)]
+                );
                 continue;
             }
         }
 
-//        \Neos\Flow\var_dump($rows);
         $this->pushJsonDatasourceInstances('6c01cb211d5c68d9981d78cf11973ce0', $rows);
     }
 
@@ -71,10 +80,10 @@ class KlipfolioService
      */
     public function boardInfoUpdate()
     {
+        $this->applicationLogger->log(
+            'Generating list of active boards'
+        );
 
-//        $this->outputLine('=============================================================================');
-//        $this->outputLine('====  Generating list of active boards');
-//        $this->outputLine('=============================================================================');
 
         $rows = array();
         foreach ($this->teamsConfiguration as $teamSlug => $team) {
@@ -82,9 +91,13 @@ class KlipfolioService
 
             $boardConfiguration = $this->jiraService->getBoardConfiguration($team['Jira']['board']);
 
-            try{
+            try {
                 $activeSprint = $this->jiraService->getActiveSprint($team['Jira']['board'], $team['Jira']['sprintMatch']);
             } catch (\Exception $exception) {
+                $this->applicationLogger->log(
+                    'Cannot get board sprint for ' . $team['name'] . '. Message: ' . $exception->getMessage(),
+                    LOG_WARNING, ['type' => get_class($exception)]
+                );
                 continue;
             }
 
@@ -101,6 +114,9 @@ class KlipfolioService
             }
 
             $issues = $this->jiraService->getIssuesForSprint($activeSprint['id']);
+            $this->applicationLogger->log(
+                'Found ' . count($issues) . ' issues for: ' . $team['name']
+            );
 
             /** @var \chobie\Jira\Issue $issue */
             foreach ($issues as $issue) {
@@ -119,7 +135,6 @@ class KlipfolioService
 
     }
 
-
     /**
      *
      *
@@ -127,22 +142,27 @@ class KlipfolioService
      */
     public function issuesUpdate()
     {
-
-//        $this->outputLine('=============================================================================');
-//        $this->outputLine('====  Generating list of all active issues');
-//        $this->outputLine('=============================================================================');
+        $this->applicationLogger->log(
+            'Generating list of all active issues'
+        );
 
         $rows = array();
         foreach ($this->teamsConfiguration as $teamSlug => $team) {
-//            $this->outputLine('===  ' . $team['name']);
 
             try {
                 $activeSprint = $this->jiraService->getActiveSprint($team['Jira']['board'], $team['Jira']['sprintMatch']);
             } catch (\Exception $exception) {
+                $this->applicationLogger->log(
+                    'Cannot get active issues for ' . $team['name'] . '. Message: ' . $exception->getMessage(),
+                    LOG_WARNING, ['type' => get_class($exception)]
+                );
                 continue;
             }
 
             $issues = $this->jiraService->getIssuesForSprint($activeSprint['id']);
+            $this->applicationLogger->log(
+                'Found ' . count($issues) . ' issues for: ' . $team['name']
+            );
 
             /** @var \chobie\Jira\Issue $issue */
             foreach ($issues as $issue) {
@@ -163,16 +183,24 @@ class KlipfolioService
      */
     public function pullRequestsUpdate()
     {
-
-//        $this->outputLine('=============================================================================');
-//        $this->outputLine('====  Generating list of pull requests');
-//        $this->outputLine('=============================================================================');
+        $this->applicationLogger->log(
+            'Generating list of pull requests'
+        );
 
         $rows = array();
         foreach ($this->teamsConfiguration as $teamSlug => $team) {
-//            $this->outputLine('===  ' . $team['name']);
 
-            $pullRequests = $this->gitService->getPullsByTeam($team['GitHub']['teams'][0]);
+            try {
+                $pullRequests = $this->gitService->getPullsByTeam($team['GitHub']['teams'][0]);
+            } catch (\Exception $exception) {
+                $this->applicationLogger->log(
+                    'Cannot get pull requests for ' . $team['name'] . '. Message: ' . $exception->getMessage(),
+                    LOG_WARNING, ['type' => get_class($exception)]
+                );
+                continue;
+            }
+
+
             foreach ($pullRequests as $pullRequest) {
 //                $this->outputLine('====  Adding: ' . $pullRequest['html_url']);
 
@@ -181,13 +209,22 @@ class KlipfolioService
                     continue;
                 }
 
-                $commitStatus = $this->gitService->getByPath(
-                    sprintf(
-                        '/repos/drdk/%s/commits/%s/status',
-                        $pullRequest['head']['repo']['name'],
-                        $pullRequest['head']['sha']
-                    )
-                );
+                try {
+                    $commitStatus = $this->gitService->getByPath(
+                        sprintf(
+                            '/repos/drdk/%s/commits/%s/status',
+                            $pullRequest['head']['repo']['name'],
+                            $pullRequest['head']['sha']
+                        )
+                    );
+                } catch (\Exception $exception) {
+                    $this->applicationLogger->log(
+                        'Cannot get pull request status for ' . $pullRequest['head']['repo']['name'] . '. Message: ' . $exception->getMessage(),
+                        LOG_WARNING, ['type' => get_class($exception)]
+                    );
+                    continue;
+                }
+
 
                 $rows[$pullRequest['id']] = array(
                     'Nr' => $pullRequest['number'],
@@ -206,13 +243,11 @@ class KlipfolioService
                     '_teams' => $teamSlug
                 );
 
-
             }
         }
 //        \Neos\Flow\var_dump($rows);
         $this->pushJsonDatasourceInstances('7359e2edcd8c8a1aab7daa27427ac02b', $rows);
     }
-
 
     //184756-92443500-a524-0135-8805-22000ae1c15b
 
@@ -235,7 +270,6 @@ class KlipfolioService
         unlink($tmpfname);
     }
 
-
     protected function updateDatasourceInstances($datasourceInstances, $rows)
     {
         $apiKey = '775f9849e79497572657f4ef976149fa413a42e3';
@@ -257,6 +291,5 @@ class KlipfolioService
         exec($command);
         unlink($tmpfname);
     }
-
 
 }

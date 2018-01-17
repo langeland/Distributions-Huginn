@@ -39,6 +39,12 @@ class GitService
     protected $authToken;
 
     /**
+     * @var \Langeland\Huginn\Log\ApplicationLoggerInterface
+     * @Flow\Inject
+     */
+    protected $applicationLogger;
+
+    /**
      *
      */
     public function initializeObject()

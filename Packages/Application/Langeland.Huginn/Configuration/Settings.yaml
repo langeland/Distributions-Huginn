@@ -5,7 +5,8 @@ Langeland:
         name: 'Team WebApi'
         Jira:
           board: 109
-          sprintMatch: '/^(Web-|)API Sprint [\w (+)]*/'
+#          sprintMatch: '/^(Web-|)API Sprint [\w (+)]*/'
+          sprintMatch: '/.*/'
         GitHub:
           tags:
             - 'team-web-api'
@@ -15,7 +16,8 @@ Langeland:
         name: 'Team Display'
         Jira:
           board: 57
-          sprintMatch: '/^Display Sprint [\w (+)]*/'
+#          sprintMatch: '/^Display Sprint [\w (+)]*/'
+          sprintMatch: '/.*/'
         GitHub:
           tags:
             - 'team-display'
@@ -27,6 +29,7 @@ Langeland:
         Jira:
           board: 67
           sprintMatch: '/^PF - Sprint [\w (+)]*/'
+#          sprintMatch: '/.*/'
         GitHub:
           tags:
             - 'team-core'

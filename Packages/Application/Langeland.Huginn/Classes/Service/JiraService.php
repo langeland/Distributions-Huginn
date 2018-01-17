@@ -31,6 +31,12 @@ class JiraService
     protected $apiCache;
 
     /**
+     * @var \Langeland\Huginn\Log\ApplicationLoggerInterface
+     * @Flow\Inject
+     */
+    protected $applicationLogger;
+
+    /**
      * Returns all boards. This only includes boards that the user has permission to view.
      *
      * @see https://docs.atlassian.com/jira-software/REST/cloud/#agile/1.0/board-getAllBoards
