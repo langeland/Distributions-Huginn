@@ -36,7 +36,7 @@ services:
     volumes:
         - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
   php:
-    image: pcodk/php7
+    image: danmarksradio/docker-twa-php-71:develop
     volumes_from:
       - application:rw
     volumes:

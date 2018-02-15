@@ -184,4 +184,21 @@ class JiraService
 
         return $keydIssues;
     }
+
+    /**
+     * Check if the issue key has a corresponding issue in Jira
+     * @param string $issueKey
+     * @return bool
+     */
+    public function hasIssue($issueKey)
+    {
+        $result = $this->jira->getIssue($issueKey)->getResult();
+        if (isset($result['errors'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
 }
