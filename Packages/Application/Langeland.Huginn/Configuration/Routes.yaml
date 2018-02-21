@@ -24,3 +24,12 @@
     '@format':     'json'
 
 
+-
+  name: 'Jira endpoints'
+  uriPattern: 'jira/{@action}'
+  defaults:
+    '@package':    'Langeland.Huginn'
+    '@controller': 'Jira'
+    '@format':     'json'
+
+
