@@ -25,12 +25,13 @@
 
 
 -
-  name: 'Jira endpoints'
-  uriPattern: 'devtools/checkbranch/{branchName}'
+  name: 'Validation endpoints'
+  uriPattern: 'validation/isValidBranch/{branchName}(/{issueKey})'
   defaults:
     '@package':    'Langeland.Huginn'
-    '@controller': 'Jira'
-    '@action':     'checkBranch'
+    '@controller': 'Validation'
+    '@action':     'isValidBranch'
     '@format':     'json'
+    'issueKey': ''
 
 
