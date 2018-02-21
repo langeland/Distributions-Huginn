@@ -19,20 +19,23 @@ class JiraController extends ActionController
     /**
      * Gets an issue and return 200 if found 404 if not found
      *
-     * @param string $issueKey The key for the jira issue
+     * @param string $branchName
      * @return string
      */
-    public function hasIssueAction($issueKey)
+    public function checkBranchAction($branchName)
     {
-        if ($this->jiraService->getIssueExists($issueKey)) {
-            $this->response
-                ->setStatus(200);
-        } else {
-            $this->response
-                ->setStatus(404);
-        }
 
-        return '';
+        return 'OK: ' . $branchName;
+//
+//        if ($this->jiraService->getIssueExists($issueKey)) {
+//            $this->response
+//                ->setStatus(200);
+//        } else {
+//            $this->response
+//                ->setStatus(404);
+//        }
+//
+//        return '';
     }
 
 }

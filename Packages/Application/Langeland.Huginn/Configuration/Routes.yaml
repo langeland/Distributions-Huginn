@@ -26,10 +26,11 @@
 
 -
   name: 'Jira endpoints'
-  uriPattern: 'jira/{@action}'
+  uriPattern: 'devtools/checkbranch/{branchName}'
   defaults:
     '@package':    'Langeland.Huginn'
     '@controller': 'Jira'
+    '@action':     'checkBranch'
     '@format':     'json'
 
 
