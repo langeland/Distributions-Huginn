@@ -24,12 +24,16 @@ class ValidationController extends ActionController
     {
         $branchName = $this->request->getArgument('branchName');
         $issueKey = $this->request->getArgument('issueKey');
-
-        if (empty($branchName) || !preg_match('/^(feature|task|bugfix|hotfix)$/', $branchName)) {
+        if(preg_match('/^(experimental)$/', $branchName)){
+            $this->response
+                ->setStatus(200);
+            return "";
+        }
+        elseif (!preg_match('/^(feature|task|bugfix|hotfix)$/', $branchName)) {
 
             $this->response
                 ->setStatus(400);
-            return "ERROR: Invalid branch: '$branchName' \nBranch must begin with 'feature/', 'task/', 'bugfix/' or 'hotfix/' and be all lowercase";
+            return "ERROR: Invalid branch: '$branchName' \nBranch must begin with 'feature/', 'task/', 'bugfix/', 'hotfix/' or 'experimental' and be all lowercase";
 
         } elseif (empty($issueKey) || !$this->jiraService->hasIssue($issueKey)) {
 
@@ -42,7 +46,7 @@ class ValidationController extends ActionController
         $this->response
             ->setStatus(200);
 
-        return '';
+        return "";
 
     }
 
