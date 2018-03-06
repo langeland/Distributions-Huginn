@@ -24,3 +24,14 @@
     '@format':     'json'
 
 
+-
+  name: 'Validation endpoints'
+  uriPattern: 'validation/isValidBranch/{branchName}(/{issueKey})'
+  defaults:
+    '@package':    'Langeland.Huginn'
+    '@controller': 'Validation'
+    '@action':     'isValidBranch'
+    '@format':     'json'
+    'issueKey': ''
+
+
