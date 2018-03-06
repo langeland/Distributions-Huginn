@@ -5,7 +5,7 @@ Langeland:
         name: 'Team WebApi'
         Jira:
           board: 109
-          sprintMatch: '/^(Web-|)API Sprint [\w (+)]*/'
+          sprintMatch: '/.*/'
         GitHub:
           tags:
             - 'team-web-api'
@@ -15,23 +15,23 @@ Langeland:
         name: 'Team Display'
         Jira:
           board: 57
-          sprintMatch: '/^Display Sprint [\w (+)]*/'
+          sprintMatch: '/.*/'
         GitHub:
           tags:
             - 'team-display'
           teams:
             - 'team-display'
 
-      core:
-        name: 'Drupal Core'
-        Jira:
-          board: 67
-          sprintMatch: '/^PF - Sprint [\w (+)]*/'
-        GitHub:
-          tags:
-            - 'team-core'
-          teams:
-            - 'team-core'
+#      core:
+#        name: 'Drupal Core'
+#        Jira:
+#          board: 67
+#          sprintMatch: '/.*/'
+#        GitHub:
+#          tags:
+#            - 'team-core'
+#          teams:
+#            - 'team-core'
 
     Jira:
       Api:
