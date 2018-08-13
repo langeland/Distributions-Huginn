@@ -11,6 +11,7 @@ Langeland:
             - 'team-web-api'
           teams:
             - 'team-web-api'
+
       display:
         name: 'Team Display'
         Jira:
@@ -21,6 +22,51 @@ Langeland:
             - 'team-display'
           teams:
             - 'team-display'
+
+      core-pf:
+        name: 'CorePF'
+        Jira:
+          board: 157
+          sprintMatch: '/.*/'
+        GitHub:
+          tags:
+          - 'team-core'
+          teams:
+          - 'team-core'
+
+      core-rg:
+        name: 'CoreRG'
+        Jira:
+          board: 102
+          sprintMatch: '/.*/'
+        GitHub:
+          tags:
+          teams:
+
+      dev-ops:
+        name: 'DevOps'
+        Jira:
+          board: 259
+          sprintMatch: '/.*/'
+        GitHub:
+          tags:
+          teams:
+          - 'devops'
+
+      aaa:
+        name: 'AAA'
+        Jira:
+          board: 78
+          sprintMatch: '/.*/'
+        GitHub:
+          tags:
+          teams:
+          - 'team-aaa'
+
+
+
+
+
 
 #      core:
 #        name: 'Drupal Core'

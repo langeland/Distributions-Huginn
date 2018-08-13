@@ -1,47 +1,55 @@
 version: '2'
 
 services:
+
   application:
-    image: cweagans/bg-sync
+    image: tianon/true
     volumes:
-      - .:/source
-      - /var/www/application
-    environment:
-      - SYNC_DESTINATION=/var/www/application
-      - SYNC_MAX_INOTIFY_WATCHES=40000
-      - SYNC_VERBOSE=1
-    privileged: true
+    - .:/var/www/application
+    labels:
+    - "traefik.enable=false"
+
   mysql:
-    image: mysql:5.6
+    image: mysql:5.7.22
     ports:
-      - "3307:3306"
+    - "3307:3306"
+    volumes:
+    - ./docker/mysql/data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: noitacilppa
-      MYSQL_USER: application
-      MYSQL_PASSWORD: noitacilppa
-      MYSQL_DATABASE: application
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    labels:
+    - "traefik.enable=false"
+
   nginx:
-    image: nginx:1.13
-    ports:
-      - "80:80"
+    image: nginx:1.13.12
     volumes_from:
-      - application:rw
+    - application:rw
     environment:
       NGINX_WEBROOT: "/var/www/application/Web"
       NGINX_PHP_HOST_AND_PORT: php:9000
       NGINX_SERVERNAME: application-dev
+      FLOW_CONTEXT: "${FLOW_CONTEXT}"
     volumes:
-        - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    labels:
+    - "traefik.backend=telegraph"
+    - "traefik.frontend.rule=Host:telegraph.anne.flab.dk"
+    ports:
+    - "80:80"
+
   php:
     image: danmarksradio/docker-twa-php-71:develop
     volumes_from:
-      - application:rw
+    - application:rw
     environment:
-      XDEBUG_CONFIG: remote_host=172.17.0.1
-      PCO_ENV: dev
-      FLOW_CONTEXT: Development/Docker
-
-  devtools:
-    image: pcodk/devtools
-    volumes_from:
-      - application
+      FLOW_CONTEXT: "${FLOW_CONTEXT}"
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    env_file:
+      - .env
+    labels:
+    - "traefik.enable=false"
