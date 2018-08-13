@@ -56,11 +56,16 @@ class GitService
         $callIdentifier = 'getReposByTeam' . sha1(json_encode(func_get_args()));
         if (!$this->apiCache->has($callIdentifier)) {
             $teams = $this->github->organization()->teams()->all('drdk');
+            $foundTeam = null;
             foreach ($teams as $team) {
                 if ($team['slug'] == $teamSlug) {
                     $foundTeam = $team;
                     break;
                 }
+            }
+
+            if($foundTeam === null){
+                return [];
             }
 
             $teamsApi = $this->github->organizations()->teams();
