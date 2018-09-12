@@ -52,7 +52,8 @@ class KlipfolioService
 //            $this->outputLine('===  ' . $team['name']);
             try {
                 $activeSprint = $this->jiraService->getActiveSprint($team['Jira']['board'], $team['Jira']['sprintMatch']);
-                $activeSprint['goal'] = nl2br($activeSprint['goal']);
+                $activeSprint['goal_html'] = nl2br($activeSprint['goal'], false);
+                $activeSprint['goals'] = explode("<br>\n", $activeSprint['goal']);
                 $activeSprint['_teams'] = $teamSlug;
                 $rows[$teamSlug] = $activeSprint;
             } catch (\Exception $exception) {
